@@ -73,8 +73,14 @@ namespace Cyril_and_Methodius
             }
             else if (Helper.CheckURLValid(linkText))
             {
-                linkLabel1.Text = linkText;
-                //TODO
+                if (Helper.RemoteFileExists(linkText))
+                {
+                    linkLabel1.Text = linkText;
+                }
+                else
+                {
+                    linkLabel1.Text = "Targeted url was unreachable or returned error.";
+                }
             }
             else
             {
