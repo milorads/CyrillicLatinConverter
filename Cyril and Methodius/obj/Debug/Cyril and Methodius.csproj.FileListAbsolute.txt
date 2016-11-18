@@ -1,0 +1,8 @@
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\bin\Debug\Cyril and Methodius.exe.config
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\bin\Debug\Cyril and Methodius.exe
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\bin\Debug\Cyril and Methodius.pdb
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\obj\Debug\Cyril and Methodius.csprojResolveAssemblyReference.cache
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\obj\Debug\Cyril_and_Methodius.Properties.Resources.resources
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\obj\Debug\Cyril and Methodius.csproj.GenerateResource.Cache
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\obj\Debug\Cyril and Methodius.exe
+c:\users\msekulovic\documents\visual studio 2015\Projects\Cyril and Methodius\Cyril and Methodius\obj\Debug\Cyril and Methodius.pdb
