@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Model\FileReader.cs" />
     <Compile Include="Model\FileWriter.cs" />
+    <Compile Include="Model\Helper.cs" />
     <Compile Include="Model\Translator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -44,9 +44,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            //
+            // 
             // button1
-            //
+            // 
             this.button1.Location = new System.Drawing.Point(12, 33);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 23);
@@ -54,42 +54,42 @@
             this.button1.Text = "Choose file";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(218, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 1;
-            //
+            // 
             // label2
-            //
+            // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(180, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Choose file from filesystem:";
-            //
+            // 
             // label3
-            //
+            // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "Choose file from web:";
-            //
+            // 
             // textBox1
-            //
+            // 
             this.textBox1.Location = new System.Drawing.Point(13, 84);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(199, 22);
             this.textBox1.TabIndex = 4;
-            //
+            // 
             // button2
-            //
+            // 
             this.button2.Location = new System.Drawing.Point(13, 113);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(199, 23);
@@ -97,9 +97,9 @@
             this.button2.Text = "Download file";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            //
+            // 
             // linkLabel1
-            //
+            // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.DeepSkyBlue;
             this.linkLabel1.Location = new System.Drawing.Point(221, 88);
@@ -108,78 +108,78 @@
             this.linkLabel1.TabIndex = 6;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "No link chosen";
-            //
+            // 
             // label4
-            //
+            // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(219, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "No file chosen";
-            //
+            // 
             // label5
-            //
+            // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(13, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "Choose from plain text:";
-            //
+            // 
             // textBox2
-            //
+            // 
             this.textBox2.Location = new System.Drawing.Point(12, 159);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(558, 202);
             this.textBox2.TabIndex = 9;
-            //
+            // 
             // comboBox1
-            //
+            // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(218, 367);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 24);
             this.comboBox1.TabIndex = 10;
-            //
+            // 
             // textBox3
-            //
+            // 
             this.textBox3.Location = new System.Drawing.Point(12, 413);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(558, 202);
             this.textBox3.TabIndex = 11;
-            //
+            // 
             // button3
-            //
+            // 
             this.button3.Location = new System.Drawing.Point(12, 367);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(200, 23);
             this.button3.TabIndex = 12;
             this.button3.Text = "Choose source:";
             this.button3.UseVisualStyleBackColor = true;
-            //
+            // 
             // label6
-            //
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(175, 627);
+            // 
+            this.label6.Location = new System.Drawing.Point(12, 618);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(243, 17);
+            this.label6.Size = new System.Drawing.Size(558, 26);
             this.label6.TabIndex = 13;
             this.label6.Text = "Copyright ©  2016 Infinite Imagination";
-            //
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label7
-            //
+            // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(10, 393);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 17);
             this.label7.TabIndex = 14;
             this.label7.Text = "Converted text:";
-            //
+            // 
             // Form1
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 653);

@@ -16,6 +16,7 @@ namespace Cyril_and_Methodius
     {
         public Form1()
         {
+
             // test
             //string a = "Тест ћирилична метода, са још по неким карактером. ХЕ ЏА џ xzwq QQ // џ њ љ Џ Њ Љ";
             //string b = "Теst latinična metoda, sa još po nekim karakterom. Xe dža Dž DŽ xzwq QQ // dŽ dž Dž DŽ Nj nj NJ nJ lj lJ LJ Lj";
@@ -30,8 +31,8 @@ namespace Cyril_and_Methodius
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog fDialog = new OpenFileDialog();
-            fDialog.Title = "Open XML/UML File";
-            fDialog.Filter = "XML Files|*.txt";
+            fDialog.Title = "Open txt File";
+            fDialog.Filter = "Txt Files|*.txt";
             fDialog.InitialDirectory = @"C:\";
             int size = -1;
             DialogResult result = fDialog.ShowDialog(); // Show the dialog.
@@ -51,7 +52,34 @@ namespace Cyril_and_Methodius
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            string linkText = textBox1.Text;
+            string httpCheck = new string(linkText.Take(7).ToArray());
+            string httpsCheck = new string(linkText.Take(8).ToArray());
+            string wwwCheck = new string(linkText.Take(3).ToArray());
+            if (String.Compare("www", wwwCheck, true) == 0 || String.Compare("http://", httpCheck, true) == 0 || String.Compare("https://", httpsCheck) == 0)
+            {
+                if (String.Compare("www", wwwCheck, true) == 0)
+                {
+                    linkText = "http://" + linkText;
+                }
+            }
+            else
+            {
+                linkText = "http://www." + linkText;
+            }
+            if (linkText == String.Empty)
+            {
+                linkLabel1.Text = "No link inserted.";
+            }
+            else if (Helper.CheckURLValid(linkText))
+            {
+                linkLabel1.Text = linkText;
+                //TODO
+            }
+            else
+            {
+                linkLabel1.Text = "Invalid link inserted.";
+            }
         }
     }
 }
