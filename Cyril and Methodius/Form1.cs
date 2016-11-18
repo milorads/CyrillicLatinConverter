@@ -14,6 +14,8 @@ namespace Cyril_and_Methodius
 {
     public partial class Form1 : Form
     {
+        private string filesystemFileName;
+        private string webFileLocation;
         public Form1()
         {
 
@@ -26,6 +28,20 @@ namespace Cyril_and_Methodius
             //Console.Read();
             // test
             InitializeComponent();
+            Dictionary<DropdownOptions, string> test = new Dictionary<DropdownOptions, string>();
+            test.Add(DropdownOptions.Filesystem, "Filesystem");
+            test.Add(DropdownOptions.Web, "Web");
+            test.Add(DropdownOptions.Input, "Input");
+            comboBox1.DataSource = new BindingSource(test, null);
+            comboBox1.DisplayMember = "Value";
+            comboBox1.ValueMember = "Key";
+
+        }
+
+        public enum DropdownOptions{
+            Filesystem,
+            Web,
+            Input
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,8 +54,8 @@ namespace Cyril_and_Methodius
             DialogResult result = fDialog.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-                string file = fDialog.FileName;
-                label1.Text = file;
+                filesystemFileName = fDialog.FileName;
+                label4.Text = filesystemFileName;
             }
             Console.WriteLine(size); // <-- Shows file size in debugging mode.
             Console.WriteLine(result); // <-- For debugging use.
@@ -76,6 +92,7 @@ namespace Cyril_and_Methodius
                 if (Helper.RemoteFileExists(linkText))
                 {
                     linkLabel1.Text = linkText;
+                    webFileLocation = linkText;
                 }
                 else
                 {
@@ -85,6 +102,36 @@ namespace Cyril_and_Methodius
             else
             {
                 linkLabel1.Text = "Invalid link inserted.";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DropdownOptions option = (DropdownOptions)comboBox1.SelectedValue;
+            switch (option)
+            {
+                case DropdownOptions.Filesystem:
+                    if (!String.IsNullOrEmpty(filesystemFileName))
+                    {
+                        // handle filesystemFileName
+                        string dsadas = filesystemFileName;
+                    }
+                    break;
+                case DropdownOptions.Web:
+                    if (!String.IsNullOrEmpty(webFileLocation))
+                    {
+                        // handle webFileLocation
+                        string dsad = webFileLocation;
+                    }
+                    break;
+                case DropdownOptions.Input:
+                    if (!(String.IsNullOrWhiteSpace(textBox2.Text) || String.IsNullOrEmpty(textBox2.Text)))
+                    {
+                        string inputString = textBox2.Text;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
