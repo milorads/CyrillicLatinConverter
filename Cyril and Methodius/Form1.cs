@@ -137,7 +137,7 @@ namespace Cyril_and_Methodius
                     {
                         // handle filesystemFileName
                         string textFromFile =  _filer.ReadFromFile(filesystemFileName);
-                        textBox3.Text = _translator.Translate(textFromFile, _translator.Detect());
+                        textBox3.Text = _translator.Translate(textFromFile, _translator.Detect(textFromFile));
                     }
                     break;
                 case DropdownOptions.Web:
@@ -146,7 +146,7 @@ namespace Cyril_and_Methodius
                         try
                         {
                             string textFromWeb = _filer.ReadFromWeb(webFileLocation);
-                            textBox3.Text = _translator.Translate(textFromWeb, _translator.Detect());
+                            textBox3.Text = _translator.Translate(textFromWeb, _translator.Detect(textFromWeb));
                         }
                         catch (WebReadException)
                         {
@@ -163,7 +163,7 @@ namespace Cyril_and_Methodius
                 case DropdownOptions.Input:
                     if (!(String.IsNullOrWhiteSpace(textBox2.Text) || String.IsNullOrEmpty(textBox2.Text)))
                     {
-                        textBox3.Text = _translator.Translate(textBox2.Text, _translator.Detect());
+                        textBox3.Text = _translator.Translate(textBox2.Text, _translator.Detect(textBox2.Text));
                     }
                     else
                     {

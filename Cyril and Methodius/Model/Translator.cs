@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Cyril_and_Methodius.Model
@@ -71,9 +72,13 @@ namespace Cyril_and_Methodius.Model
             Mark
         }
 
-        public bool Detect() {
-            return true;
-            //TODO
+        public bool Detect(string stringToCheck) {
+
+            if (Regex.IsMatch(stringToCheck, @"\p{IsCyrillic}"))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
