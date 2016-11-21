@@ -14,6 +14,8 @@ namespace Cyril_and_Methodius
 {
     public partial class Form1 : Form
     {
+        private Translator _translator = new Translator();
+        private FileHandler _filer = new FileHandler();
         private string filesystemFileName;
         private string webFileLocation;
         public Form1()
@@ -114,20 +116,35 @@ namespace Cyril_and_Methodius
                     if (!String.IsNullOrEmpty(filesystemFileName))
                     {
                         // handle filesystemFileName
-                        string dsadas = filesystemFileName;
+                        string textFromFile =  _filer.ReadFromFile(filesystemFileName);
+                        textBox3.Text = _translator.Translate(textFromFile, _translator.Detect());
                     }
                     break;
                 case DropdownOptions.Web:
                     if (!String.IsNullOrEmpty(webFileLocation))
                     {
                         // handle webFileLocation
-                        string dsad = webFileLocation;
+                        try
+                        {
+                            string textFromWeb = _filer.ReadFromWeb(webFileLocation);
+                        }
+                        catch (WebReadException e)
+                        {
+                            //TODO if webreadException is thrown
+                            throw;
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+
                     }
                     break;
                 case DropdownOptions.Input:
                     if (!(String.IsNullOrWhiteSpace(textBox2.Text) || String.IsNullOrEmpty(textBox2.Text)))
                     {
-                        string inputString = textBox2.Text;
+                        textBox3.Text = _translator.Translate(textBox2.Text, _translator.Detect());
                     }
                     break;
                 default:

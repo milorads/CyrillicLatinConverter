@@ -70,5 +70,10 @@ namespace Cyril_and_Methodius.Model
             Delete,
             Mark
         }
+
+        public bool Detect() {
+            return true;
+            //TODO
+        }
     }
 }
