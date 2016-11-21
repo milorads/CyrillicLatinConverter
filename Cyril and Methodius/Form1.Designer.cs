@@ -42,13 +42,15 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 33);
+            this.button1.Location = new System.Drawing.Point(9, 27);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 23);
+            this.button1.Size = new System.Drawing.Size(150, 19);
             this.button1.TabIndex = 0;
             this.button1.Text = "Choose file";
             this.button1.UseVisualStyleBackColor = true;
@@ -57,33 +59,37 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 13);
+            this.label2.Location = new System.Drawing.Point(10, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 17);
+            this.label2.Size = new System.Drawing.Size(133, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Choose file from filesystem:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 63);
+            this.label3.Location = new System.Drawing.Point(10, 51);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 17);
+            this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Choose file from web:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 84);
+            this.textBox1.Location = new System.Drawing.Point(10, 68);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(199, 22);
+            this.textBox1.Size = new System.Drawing.Size(150, 20);
             this.textBox1.TabIndex = 1;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(13, 113);
+            this.button2.Location = new System.Drawing.Point(10, 92);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(199, 23);
+            this.button2.Size = new System.Drawing.Size(149, 19);
             this.button2.TabIndex = 2;
             this.button2.Text = "Download file";
             this.button2.UseVisualStyleBackColor = true;
@@ -91,62 +97,73 @@
             // 
             // linkLabel1
             // 
+            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.SkyBlue;
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.DeepSkyBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(221, 88);
+            this.linkLabel1.Location = new System.Drawing.Point(166, 72);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(101, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(78, 13);
             this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "No link chosen";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Firebrick;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(218, 39);
+            this.label4.Location = new System.Drawing.Point(164, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 17);
+            this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "No file chosen";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 139);
+            this.label5.Location = new System.Drawing.Point(10, 113);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(152, 17);
+            this.label5.Size = new System.Drawing.Size(114, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Choose from plain text:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 159);
+            this.textBox2.Location = new System.Drawing.Point(9, 129);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(558, 202);
+            this.textBox2.Size = new System.Drawing.Size(420, 165);
             this.textBox2.TabIndex = 3;
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(218, 367);
+            this.comboBox1.Location = new System.Drawing.Point(164, 298);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 24);
+            this.comboBox1.Size = new System.Drawing.Size(151, 21);
             this.comboBox1.TabIndex = 5;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 413);
+            this.textBox3.Location = new System.Drawing.Point(9, 336);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(558, 202);
+            this.textBox3.Size = new System.Drawing.Size(420, 165);
             this.textBox3.TabIndex = 6;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 367);
+            this.button3.Location = new System.Drawing.Point(9, 298);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 23);
+            this.button3.Size = new System.Drawing.Size(150, 19);
             this.button3.TabIndex = 4;
             this.button3.Text = "Convert from";
             this.button3.UseVisualStyleBackColor = true;
@@ -154,9 +171,10 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(12, 618);
+            this.label6.Location = new System.Drawing.Point(9, 502);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(558, 26);
+            this.label6.Size = new System.Drawing.Size(418, 21);
             this.label6.TabIndex = 13;
             this.label6.Text = "Copyright ©  2016 Infinite Imagination";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -164,17 +182,28 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 393);
+            this.label7.Location = new System.Drawing.Point(8, 319);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 17);
+            this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Converted text:";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(321, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(103, 100);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 653);
+            this.ClientSize = new System.Drawing.Size(436, 531);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button3);
@@ -189,6 +218,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -213,6 +243,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

@@ -53,10 +53,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\FileHandler.cs" />
     <Compile Include="Model\FileReader.cs" />
     <Compile Include="Model\FileWriter.cs" />
     <Compile Include="Model\Helper.cs" />
     <Compile Include="Model\Translator.cs" />
+    <Compile Include="Model\WebReadException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

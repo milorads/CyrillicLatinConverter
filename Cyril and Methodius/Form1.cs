@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cyril_and_Methodius.Model;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Cyril_and_Methodius
 {
     public partial class Form1 : Form
     {
+        public string applicationName = "Cyril & Methodius - Converter";
         private Translator _translator = new Translator();
         private FileHandler _filer = new FileHandler();
         private string filesystemFileName;
@@ -57,10 +60,12 @@ namespace Cyril_and_Methodius
             if (result == DialogResult.OK) // Test result.
             {
                 filesystemFileName = fDialog.FileName;
-                label4.Text = filesystemFileName;
+                ToolTip ToolTip1 = new ToolTip();
+                ToolTip1.SetToolTip(label4, filesystemFileName);
+                label4.Text = Path.GetFileName(filesystemFileName);
             }
-            Console.WriteLine(size); // <-- Shows file size in debugging mode.
-            Console.WriteLine(result); // <-- For debugging use.
+            //Console.WriteLine(size); // <-- Shows file size in debugging mode.
+            //Console.WriteLine(result); // <-- For debugging use.
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -91,14 +96,29 @@ namespace Cyril_and_Methodius
             }
             else if (Helper.CheckURLValid(linkText))
             {
-                if (Helper.RemoteFileExists(linkText))
+                if (Helper.RemoteDestinationExists(linkText))
                 {
-                    linkLabel1.Text = linkText;
+                    if (Helper.GetPageTitle(linkText) != "")
+                    {
+                        linkLabel1.Text = Helper.GetPageTitle(linkText);
+                        LinkLabel.Link link = new LinkLabel.Link();
+                        link.LinkData = linkText;
+                        for (int i = 0; i < linkLabel1.Links.Count; i++)
+                        {
+                            linkLabel1.Links.RemoveAt(i);
+                        }
+                        linkLabel1.Links.Add(link);
+                    }
+                    else
+                    {
+                        linkLabel1.Text = linkText;
+                    }
+
                     webFileLocation = linkText;
                 }
                 else
                 {
-                    linkLabel1.Text = "Targeted url was unreachable or returned error.";
+                    linkLabel1.Text = "Targeted url was unreachable.";
                 }
             }
             else
@@ -123,22 +143,21 @@ namespace Cyril_and_Methodius
                 case DropdownOptions.Web:
                     if (!String.IsNullOrEmpty(webFileLocation))
                     {
-                        // handle webFileLocation
                         try
                         {
                             string textFromWeb = _filer.ReadFromWeb(webFileLocation);
+                            textBox3.Text = _translator.Translate(textFromWeb, _translator.Detect());
                         }
-                        catch (WebReadException e)
+                        catch (WebReadException)
                         {
-                            //TODO if webreadException is thrown
-                            throw;
+                            MessageBox.Show("Error reading the file from the web page.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // add log4j
                         }
                         catch (Exception)
                         {
-
-                            throw;
+                            MessageBox.Show("Generic error appeared, please report to developer.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            // log4j
                         }
-
                     }
                     break;
                 case DropdownOptions.Input:
@@ -146,10 +165,23 @@ namespace Cyril_and_Methodius
                     {
                         textBox3.Text = _translator.Translate(textBox2.Text, _translator.Detect());
                     }
+                    else
+                    {
+                        MessageBox.Show("The field is empty.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     break;
                 default:
                     break;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (e.Link.LinkData != null)
+            {
+                Process.Start(e.Link.LinkData as string);
+            }
+            linkLabel1.LinkVisited = true;
         }
     }
 }
