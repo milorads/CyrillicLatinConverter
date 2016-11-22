@@ -176,7 +176,7 @@ namespace Cyril_and_Methodius
                 case DropdownOptions.Input:
                     if (!(String.IsNullOrWhiteSpace(textBox2.Text) || String.IsNullOrEmpty(textBox2.Text)))
                     {
-                        TranslationHandler(additionalOption, textBox3.Text);
+                        TranslationHandler(additionalOption, textBox2.Text);
                     }
                     else
                     {
@@ -218,13 +218,16 @@ namespace Cyril_and_Methodius
             {
                 textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Delete);
             }
-            else if (additionalOption == Translator.LatinEnglishCharacter.Delete)
+            else if (additionalOption == Translator.LatinEnglishCharacter.Mark)
             {
                 if (customReplacementMark == "")
                 {
                     textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Mark);
                 }
-                textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Mark, customReplacementMark);
+                else
+                {
+                    textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Mark, customReplacementMark);
+                }
             }
             additionalOption = Translator.LatinEnglishCharacter.Include;
         }
