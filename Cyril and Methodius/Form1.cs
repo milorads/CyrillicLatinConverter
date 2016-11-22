@@ -17,6 +17,7 @@ namespace Cyril_and_Methodius
     public partial class Form1 : Form
     {
         public string applicationName = "Cyril & Methodius - Converter";
+        private string customReplacementMark = "";
         private Translator _translator = new Translator();
         private TextHandler _filer = new TextHandler();
         private string filesystemFileName;
@@ -58,7 +59,7 @@ namespace Cyril_and_Methodius
             comboBox2.DataSource = new BindingSource(replacementOptions, null);
             comboBox2.DisplayMember = "Value";
             comboBox2.ValueMember = "Key";
-
+            // rest
         }
 
         public enum DropdownOptions{
@@ -147,39 +148,35 @@ namespace Cyril_and_Methodius
         private void button3_Click(object sender, EventArgs e)
         {
             DropdownOptions option = (DropdownOptions)comboBox1.SelectedValue;
+            Translator.LatinEnglishCharacter additionalOption = new Translator.LatinEnglishCharacter();
+             if (QWYXstate["CheckBoxEnabled"] == false && QWYXstate["ComboBoxEnabled"] == true)
+            {
+                additionalOption = (Translator.LatinEnglishCharacter)comboBox2.SelectedValue;
+            }
             switch (option)
             {
                 case DropdownOptions.Filesystem:
                     if (!String.IsNullOrEmpty(filesystemFileName))
                     {
                         string textFromFile =  _filer.ReadFromFile(filesystemFileName);
-                        textBox3.Text = _translator.Translate(textFromFile, _translator.Detect(textFromFile));
+                        TranslationHandler(additionalOption, textFromFile);
                     }
                     break;
                 case DropdownOptions.Web:
                     if (!String.IsNullOrEmpty(webFileLocation))
                     {
-                        try
-                        {
-                            string textFromWeb = _filer.ReadFromWeb(webFileLocation);
-                            textBox3.Text = _translator.Translate(textFromWeb, _translator.Detect(textFromWeb));
-                        }
-                        catch (WebReadException) //e -> log4j
-                        {
-                            MessageBox.Show("Error reading the file from the web page.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            // add log4j
-                        }
-                        catch (Exception) //e -> log4j
-                        {
-                            MessageBox.Show("Generic error appeared, please report to developer.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            // log4j
-                        }
+                        webTranslationHandler(additionalOption);
+                    }
+                    else
+                    {
+                        button2.PerformClick();
+                        webTranslationHandler(additionalOption);
                     }
                     break;
                 case DropdownOptions.Input:
                     if (!(String.IsNullOrWhiteSpace(textBox2.Text) || String.IsNullOrEmpty(textBox2.Text)))
                     {
-                        textBox3.Text = _translator.Translate(textBox2.Text, _translator.Detect(textBox2.Text));
+                        TranslationHandler(additionalOption, textBox3.Text);
                     }
                     else
                     {
@@ -190,6 +187,46 @@ namespace Cyril_and_Methodius
                     break;
             }
             textBox2.Text = String.Empty;
+        }
+
+        private void webTranslationHandler(Translator.LatinEnglishCharacter additionalOption)
+        {
+            try
+            {
+                string textFromWeb = _filer.ReadFromWeb(webFileLocation);
+                TranslationHandler(additionalOption, textFromWeb);
+            }
+            catch (WebReadException) //e -> log4j
+            {
+                MessageBox.Show("Error reading the file from the web page.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // add log4j
+            }
+            catch (Exception) //e -> log4j
+            {
+                MessageBox.Show("Generic error appeared, please report to developer.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // log4j
+            }
+        }
+
+        private void TranslationHandler(Translator.LatinEnglishCharacter additionalOption, string givenText)
+        {
+            if (additionalOption == Translator.LatinEnglishCharacter.Include)
+            {
+                textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText));
+            }
+            else if (additionalOption == Translator.LatinEnglishCharacter.Delete)
+            {
+                textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Delete);
+            }
+            else if (additionalOption == Translator.LatinEnglishCharacter.Delete)
+            {
+                if (customReplacementMark == "")
+                {
+                    textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Mark);
+                }
+                textBox3.Text = _translator.Translate(givenText, _translator.Detect(givenText), Translator.LatinEnglishCharacter.Mark, customReplacementMark);
+            }
+            additionalOption = Translator.LatinEnglishCharacter.Include;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -234,6 +271,14 @@ namespace Cyril_and_Methodius
         private void InputTextBoxLeave(object sender, EventArgs e)
         {
             textBox2.TextChanged += InputTextBoxChanged;
+        }
+
+        private void ReplacementChange(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedValue.ToString() == Translator.LatinEnglishCharacter.Mark.ToString())
+            {
+                // open new form
+            }
         }
     }
 }
