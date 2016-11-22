@@ -17,9 +17,10 @@ namespace Cyril_and_Methodius
     public partial class Form1 : Form
     {
         public string applicationName = "Cyril & Methodius - Converter";
-        private string customReplacementMark = "";
+        public static string customReplacementMark = "";
         private Translator _translator = new Translator();
         private TextHandler _filer = new TextHandler();
+        private MarkForm mForm = new MarkForm();
         private string filesystemFileName;
         private string webFileLocation;
         private static Dictionary<string, bool> QWYXstate = new Dictionary<string, bool>()
@@ -39,6 +40,7 @@ namespace Cyril_and_Methodius
             //Console.Read();
             // test
             InitializeComponent();
+            this.MaximizeBox = false;
             // out options
             Dictionary<DropdownOptions, string> outOptions = new Dictionary<DropdownOptions, string>();
             var outValues = Enum.GetValues(typeof(DropdownOptions));
@@ -60,6 +62,11 @@ namespace Cyril_and_Methodius
             comboBox2.DisplayMember = "Value";
             comboBox2.ValueMember = "Key";
             // rest
+            
+            //mForm.Parent = this;
+            //mForm.StartPosition = FormStartPosition.CenterParent;
+
+            
         }
 
         public enum DropdownOptions{
@@ -280,7 +287,7 @@ namespace Cyril_and_Methodius
         {
             if (comboBox2.SelectedValue.ToString() == Translator.LatinEnglishCharacter.Mark.ToString())
             {
-                // open new form
+                mForm.Show(this);
             }
         }
     }
