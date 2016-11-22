@@ -79,12 +79,12 @@ namespace Cyril_and_Methodius
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string replacementSign;
-            if (stateExisting && !stateCustom)
+            string replacementSign = "";
+            if (radioButton1.Checked == true)
             {
                 replacementSign = comboBox1.SelectedValue.ToString();
             }
-            else
+            else if (radioButton2.Checked == true)
             {
                 replacementSign = textBox1.Text;
             }
