@@ -43,10 +43,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkboxLabel = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkboxLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(149, 19);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Download file";
+            this.button2.Text = "Check remote file";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -143,6 +143,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(420, 165);
             this.textBox2.TabIndex = 3;
+            this.textBox2.TextChanged += new System.EventHandler(this.InputTextBoxChanged);
+            this.textBox2.Leave += new System.EventHandler(this.InputTextBoxLeave);
             // 
             // comboBox1
             // 
@@ -207,41 +209,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // checkboxLabel
+            // comboBox2
             // 
-            this.checkboxLabel.AutoSize = true;
-            this.checkboxLabel.Location = new System.Drawing.Point(7, 20);
-            this.checkboxLabel.Name = "checkboxLabel";
-            this.checkboxLabel.Size = new System.Drawing.Size(35, 13);
-            this.checkboxLabel.TabIndex = 0;
-            this.checkboxLabel.Text = "label1";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 37);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Enabled = false;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(6, 73);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(91, 21);
+            this.comboBox2.TabIndex = 3;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 57);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.Size = new System.Drawing.Size(70, 13);
             this.label8.TabIndex = 2;
-            this.label8.Text = "label8";
+            this.label8.Text = "Replacement";
             // 
-            // comboBox2
+            // checkBox1
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(6, 73);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(91, 21);
-            this.comboBox2.TabIndex = 3;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(10, 37);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "Q, W, X, Y";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkboxLabel
+            // 
+            this.checkboxLabel.AutoSize = true;
+            this.checkboxLabel.Location = new System.Drawing.Point(7, 20);
+            this.checkboxLabel.Name = "checkboxLabel";
+            this.checkboxLabel.Size = new System.Drawing.Size(45, 13);
+            this.checkboxLabel.TabIndex = 0;
+            this.checkboxLabel.Text = "Include ";
             // 
             // Form1
             // 
@@ -265,7 +272,7 @@
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Cyril & Methodius - Converter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

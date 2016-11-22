@@ -18,9 +18,14 @@ namespace Cyril_and_Methodius
     {
         public string applicationName = "Cyril & Methodius - Converter";
         private Translator _translator = new Translator();
-        private FileHandler _filer = new FileHandler();
+        private TextHandler _filer = new TextHandler();
         private string filesystemFileName;
         private string webFileLocation;
+        private static Dictionary<string, bool> QWYXstate = new Dictionary<string, bool>()
+        {
+            {"CheckBoxEnabled", true},
+            {"ComboBoxEnabled", false}
+        };
         public Form1()
         {
 
@@ -33,13 +38,26 @@ namespace Cyril_and_Methodius
             //Console.Read();
             // test
             InitializeComponent();
-            Dictionary<DropdownOptions, string> test = new Dictionary<DropdownOptions, string>();
-            test.Add(DropdownOptions.Filesystem, "Filesystem");
-            test.Add(DropdownOptions.Web, "Web");
-            test.Add(DropdownOptions.Input, "Input");
-            comboBox1.DataSource = new BindingSource(test, null);
+            // out options
+            Dictionary<DropdownOptions, string> outOptions = new Dictionary<DropdownOptions, string>();
+            var outValues = Enum.GetValues(typeof(DropdownOptions));
+            foreach (var item in outValues)
+            {
+                outOptions.Add((DropdownOptions)item, item.ToString());
+            }
+            comboBox1.DataSource = new BindingSource(outOptions, null);
             comboBox1.DisplayMember = "Value";
             comboBox1.ValueMember = "Key";
+            // replacement options
+            Dictionary<Translator.LatinEnglishCharacter, string> replacementOptions = new Dictionary<Translator.LatinEnglishCharacter, string>();
+            var replacementValues = Enum.GetValues(typeof(Translator.LatinEnglishCharacter));
+            foreach (var item in replacementValues)
+            {
+                replacementOptions.Add((Translator.LatinEnglishCharacter)item, item.ToString());
+            }
+            comboBox2.DataSource = new BindingSource(replacementOptions, null);
+            comboBox2.DisplayMember = "Value";
+            comboBox2.ValueMember = "Key";
 
         }
 
@@ -55,7 +73,6 @@ namespace Cyril_and_Methodius
             fDialog.Title = "Open txt File";
             fDialog.Filter = "Txt Files|*.txt";
             fDialog.InitialDirectory = @"C:\";
-            int size = -1;
             DialogResult result = fDialog.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
@@ -64,8 +81,7 @@ namespace Cyril_and_Methodius
                 ToolTip1.SetToolTip(label4, filesystemFileName);
                 label4.Text = Path.GetFileName(filesystemFileName);
             }
-            //Console.WriteLine(size); // <-- Shows file size in debugging mode.
-            //Console.WriteLine(result); // <-- For debugging use.
+            comboBox1.SelectedValue = DropdownOptions.Filesystem;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -115,6 +131,7 @@ namespace Cyril_and_Methodius
                     }
 
                     webFileLocation = linkText;
+                    comboBox1.SelectedValue = DropdownOptions.Web;
                 }
                 else
                 {
@@ -135,7 +152,6 @@ namespace Cyril_and_Methodius
                 case DropdownOptions.Filesystem:
                     if (!String.IsNullOrEmpty(filesystemFileName))
                     {
-                        // handle filesystemFileName
                         string textFromFile =  _filer.ReadFromFile(filesystemFileName);
                         textBox3.Text = _translator.Translate(textFromFile, _translator.Detect(textFromFile));
                     }
@@ -148,12 +164,12 @@ namespace Cyril_and_Methodius
                             string textFromWeb = _filer.ReadFromWeb(webFileLocation);
                             textBox3.Text = _translator.Translate(textFromWeb, _translator.Detect(textFromWeb));
                         }
-                        catch (WebReadException)
+                        catch (WebReadException) //e -> log4j
                         {
                             MessageBox.Show("Error reading the file from the web page.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             // add log4j
                         }
-                        catch (Exception)
+                        catch (Exception) //e -> log4j
                         {
                             MessageBox.Show("Generic error appeared, please report to developer.", applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             // log4j
@@ -173,6 +189,7 @@ namespace Cyril_and_Methodius
                 default:
                     break;
             }
+            textBox2.Text = String.Empty;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -182,6 +199,41 @@ namespace Cyril_and_Methodius
                 Process.Start(e.Link.LinkData as string);
             }
             linkLabel1.LinkVisited = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            stateSwitch();
+            comboBox2.Enabled = QWYXstate["ComboBoxEnabled"];
+        }
+        private static void stateSwitch()
+        {
+            bool checkBoxState = false;
+            bool comboBoxState = false;
+            QWYXstate.TryGetValue("CheckBoxEnabled", out checkBoxState);
+            QWYXstate.TryGetValue("ComboBoxEnabled", out comboBoxState);
+            if (checkBoxState == true && comboBoxState == false)
+            {
+                QWYXstate["CheckBoxEnabled"] = !checkBoxState;
+                QWYXstate["ComboBoxEnabled"] = !comboBoxState;
+            }
+            else if (checkBoxState == false && comboBoxState == true)
+            {
+                QWYXstate["CheckBoxEnabled"] = !checkBoxState;
+                QWYXstate["ComboBoxEnabled"] = !comboBoxState;
+            }
+        }
+
+        private void InputTextBoxChanged(object sender, EventArgs e)
+        {
+            textBox2.TextChanged -= InputTextBoxChanged;
+            comboBox1.SelectedValue = DropdownOptions.Input;
+        }
+
+        private void InputTextBoxLeave(object sender, EventArgs e)
+        {
+            textBox2.TextChanged += InputTextBoxChanged;
         }
     }
 }
