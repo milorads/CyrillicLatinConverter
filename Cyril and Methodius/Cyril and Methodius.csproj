@@ -60,8 +60,6 @@
       <DependentUpon>MarkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TextHandler.cs" />
-    <Compile Include="Model\FileReader.cs" />
-    <Compile Include="Model\FileWriter.cs" />
     <Compile Include="Model\Helper.cs" />
     <Compile Include="Model\Translator.cs" />
     <Compile Include="Model\WebReadException.cs" />

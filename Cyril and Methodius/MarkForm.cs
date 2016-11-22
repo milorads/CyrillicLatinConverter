@@ -74,7 +74,7 @@ namespace Cyril_and_Methodius
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace Cyril_and_Methodius
                 replacementSign = textBox1.Text;
             }
             Form1.customReplacementMark = replacementSign;
-            this.Hide();
+            Hide();
         }
     }
 }

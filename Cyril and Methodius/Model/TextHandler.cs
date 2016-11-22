@@ -14,7 +14,7 @@ namespace Cyril_and_Methodius.Model
         {
             try
             {
-                return System.IO.File.ReadAllText(fileLocation);
+                return File.ReadAllText(fileLocation);
             }
             catch (Exception)
             {

@@ -62,11 +62,6 @@ namespace Cyril_and_Methodius
             comboBox2.DisplayMember = "Value";
             comboBox2.ValueMember = "Key";
             // rest
-            
-            //mForm.Parent = this;
-            //mForm.StartPosition = FormStartPosition.CenterParent;
-
-            
         }
 
         public enum DropdownOptions{
